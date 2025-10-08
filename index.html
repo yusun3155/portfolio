@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joan Lee | Portfolio</title>
+  <meta name="description" content="Joan Lee — Portfolio" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#eaf4ff;
+      --panel:#ffffff;
+      --text:#1e293b;
+      --muted:#64748b;
+      --brand:#2563eb;         
+      --brand-2:#dbeafe;       
+      --stroke:#e2e8f0;
+      --shadow:0 8px 24px rgba(37,99,235,.1);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#eaf4ff 0%, #ffffff 60%, #dbeafe 100%);
+      color:var(--text);
+      font:16px/1.65 "Pretendard", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+    a{color:var(--brand);text-decoration:none;transition:color .2s}
+    a:hover{color:#1d4ed8;}
+    img{max-width:100%;display:block}
+    .container{width:min(1100px, 92vw);margin:0 auto}
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.8);
+      backdrop-filter:saturate(140%) blur(10px);
+      border-bottom:1px solid var(--stroke);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{
+      font-weight:400; /* 🔹 bold 제거 */
+      letter-spacing:.3px;
+      color:var(--muted); /* 🔹 project와 동일한 색상 */
+      font-size:16px; /* 🔹 project 링크와 동일한 크기 */
+    }
+    nav ul{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+    nav a{padding:.6rem .8rem;border-radius:10px;color:var(--muted)}
+    nav a:hover{background:var(--brand-2);color:var(--brand)}
+    .menu-btn{display:none}
+    .hero{padding:96px 0 56px;text-align:center}
+    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:.6rem 0;color:#1e3a8a}
+    section{padding:64px 0;border-top:1px solid var(--stroke)}
+    section h2{font-size:clamp(22px,3vw,32px);margin:0 0 18px;text-align:center;color:#1e40af}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{
+      grid-column:span 6;
+      background:linear-gradient(180deg,#ffffff,#f8fbff);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      overflow:hidden;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 40px rgba(37,99,235,.15);
+    }
+    .thumb{aspect-ratio:16/9;background:#f1f5ff;border-bottom:1px solid var(--stroke);display:flex;align-items:center;justify-content:center}
+    .thumb span{font-size:14px;color:#94a3b8}
+    .card .inner{padding:16px 16px 18px}
+    .card h3{margin:0 0 8px;font-size:18px;color:#1e3a8a}
+    footer{padding:40px 0;color:var(--muted);text-align:center;font-size:14px}
+    .viewer-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(2px);}
+    #viewer{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;}
+    #viewer.open{display:flex}
+    .viewer-card{
+      width:min(900px,92vw);
+      max-height:88vh;
+      overflow:auto;
+      background:#ffffff;
+      border:1px solid var(--stroke);
+      border-radius:20px;
+      box-shadow:0 30px 80px rgba(37,99,235,.25);
+      position:relative
+    }
+    .viewer-card h3{margin:18px 20px 8px;color:#1e3a8a}
+    .viewer-card img, .viewer-card video{width:100%;display:block;background:#000}
+    .viewer-desc{color:var(--muted);padding:0 20px 20px}
+    .viewer-close{
+      position:absolute;top:10px;right:12px;border:0;background:#f1f5ff;
+      border:1px solid var(--stroke);
+      border-radius:10px;padding:.4rem .6rem;font-size:18px;cursor:pointer;color:#1e3a8a
+    }
+    @media (max-width: 860px){
+      .grid .card{grid-column:span 12}
+      nav ul{display:none;position:absolute;right:16px;top:64px;background:#ffffff;border:1px solid var(--stroke);padding:10px;border-radius:12px;box-shadow:var(--shadow)}
+      nav ul.open{display:flex;flex-direction:column}
+      .menu-btn{display:inline-flex;gap:.4rem;align-items:center;border:1px solid var(--stroke);padding:.5rem .7rem;border-radius:10px;color:var(--muted);background:rgba(37,99,235,.05)}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand">JOAN LEE</a>
+      <button class="menu-btn" aria-label="Open Menu" onclick="toggleMenu()">☰ Menu</button>
+      <nav>
+        <ul id="menu">
+          <li><a href="#projects">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <h1>Welcome to my portfolio</h1>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <a href="#" class="proj" data-title="Infographic Design" data-desc="Data simplified into a clean visual hierarchy." data-image="YOUR_FULL_IMAGE_URL_1">
+            <div class="thumb"><img alt="Infographic thumbnail" src="YOUR_THUMB_URL_1"/></div>
+            <div class="inner"><h3>Infographic Design</h3></div>
+          </a>
+        </article>
+        <article class="card">
+          <a href="#" class="proj" data-title="Collage" data-desc="Digital collage exploring texture, layering, and narrative." data-image="YOUR_FULL_IMAGE_URL_2">
+            <div class="thumb"><img alt="Collage thumbnail" src="YOUR_THUMB_URL_2"/></div>
+            <div class="inner"><h3>Collage</h3></div>
+          </a>
+        </article>
+        <article class="card">
+          <a href="#" class="proj" data-title="Short Story — ‘How To Pick Up Girls’" data-desc="Short fiction with minimalist layout. PDF/excerpt available." data-image="YOUR_FULL_IMAGE_URL_3">
+            <div class="thumb"><img alt="Short story thumbnail" src="YOUR_THUMB_URL_3"/></div>
+            <div class="inner"><h3>Short Story — “How To Pick Up Girls”</h3></div>
+          </a>
+        </article>
+        <article class="card">
+          <a href="#" class="proj" data-title="Interview Video" data-desc="Interview cutdowns with captions and sound design." data-video="YOUR_VIDEO_URL">
+            <div class="thumb"><img alt="Interview video thumbnail" src="YOUR_THUMB_URL_4"/></div>
+            <div class="inner"><h3>Interview Video</h3></div>
+          </a>
+          <script>
+            document.querySelectorAll('.proj').forEach(a=>{
+              if(a.querySelector('h3').innerText.includes('Interview Video')){
+                a.setAttribute('data-video','https://www.youtube.com/embed/JGvUScNk1C8');
+              }
+            });
+          </script>
+        </article>
+        <article class="card">
+          <a href="#" class="proj" data-title="Poster Design" data-desc="Type + grid system exploration." data-image="YOUR_FULL_IMAGE_URL_5">
+            <div class="thumb"><img alt="Poster thumbnail" src="YOUR_THUMB_URL_5"/></div>
+            <div class="inner"><h3>Poster Design</h3></div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <div id="viewer" aria-hidden="true">
+      <div class="viewer-bg" onclick="closeViewer()"></div>
+      <div class="viewer-card" role="dialog" aria-modal="true">
+        <button class="viewer-close" aria-label="Close" onclick="closeViewer()">×</button>
+        <h3 id="viewer-title"></h3>
+        <div id="viewer-media"></div>
+        <p id="viewer-desc" class="viewer-desc"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> Joan Lee · Portfolio
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(){
+      const m = document.getElementById('menu');
+      m.classList.toggle('open');
+    }
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const viewer = document.getElementById('viewer');
+    const vTitle = document.getElementById('viewer-title');
+    const vMedia = document.getElementById('viewer-media');
+    const vDesc  = document.getElementById('viewer-desc');
+
+    function openViewer({title, desc, image, video}){
+      vTitle.textContent = title || '';
+      vDesc.textContent  = desc || '';
+      vMedia.innerHTML = '';
+      if(video){
+        const iframe = document.createElement('iframe');
+        iframe.src = video;
+        iframe.width = "100%";
+        iframe.height = "480";
+        iframe.allowFullscreen = true;
+        vMedia.appendChild(iframe);
+      } else if(image){
+        const img = document.createElement('img');
+        img.src = image; img.alt = title || 'project image';
+        vMedia.appendChild(img);
+      }
+      viewer.classList.add('open');
+      viewer.setAttribute('aria-hidden','false');
+    }
+    function closeViewer(){
+      viewer.classList.remove('open');
+      viewer.setAttribute('aria-hidden','true');
+    }
+
+    document.querySelectorAll('.proj').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        openViewer({
+          title: a.dataset.title,
+          desc: a.dataset.desc,
+          image: a.dataset.image,
+          video: a.dataset.video
+        });
+      });
+    });
+  </script>
+</body>
+</html>
