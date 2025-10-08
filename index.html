@@ -12,9 +12,9 @@
     :root{
       --bg:#ffffff;
       --panel:#ffffff;
-      --text:#0f172a;   /* slate-900 */
-      --muted:#6b7280;  /* gray-500 */
-      --stroke:#e5e7eb; /* gray-200 */
+      --text:#0f172a;
+      --muted:#6b7280;
+      --stroke:#e5e7eb;
       --radius:16px;
       --shadow:0 12px 32px rgba(0,0,0,.08);
     }
@@ -23,13 +23,12 @@
     body{
       margin:0;background:var(--bg);color:var(--text);
       font:16px/1.65 "Pretendard", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     .container{width:min(1080px,92vw);margin:0 auto}
 
-    /* Header */
     header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
     .brand{font-weight:400;letter-spacing:.3px;color:var(--muted);font-size:16px}
@@ -38,17 +37,14 @@
     nav a:hover{background:#f3f4f6;color:#111827}
     .menu-btn{display:none}
 
-    /* Hero */
     .hero{padding:86px 0 40px;text-align:center}
     .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:0 0 .5rem;color:#111827}
     .hero p{margin:0;color:var(--muted)}
 
-    /* Sections */
     section{padding:56px 0;border-top:1px solid var(--stroke)}
     section:first-of-type{border-top:0}
     h2{font-size:clamp(20px,2.4vw,28px);margin:0 0 18px;text-align:center;color:#111827}
 
-    /* Grid Cards */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
     .card{grid-column:span 4;background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
@@ -58,7 +54,6 @@
     .inner h3{margin:0 0 4px;font-size:18px}
     .inner p{margin:0;color:var(--muted);font-size:14px}
 
-    /* Viewer */
     #viewer{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px}
     #viewer.open{display:flex}
     .viewer-bg{position:absolute;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(2px)}
@@ -68,19 +63,20 @@
     .viewer-desc{color:var(--muted);padding:0 20px 20px}
     .viewer-close{position:absolute;top:10px;right:12px;border:0;background:#f3f4f6;border:1px solid var(--stroke);border-radius:10px;padding:.4rem .6rem;font-size:18px;cursor:pointer}
 
-    /* Footer */
     footer{padding:42px 0;border-top:1px solid var(--stroke);color:var(--muted);text-align:center;font-size:14px}
 
-    /* Responsive */
+    /* Contact spacing fix */
+    #contact{padding:30px 0 40px !important;}
+    #contact .hero{margin:0;}
+    #contact p{margin:4px 0 0;text-align:center;}
+
     @media (max-width: 900px){
       .card{grid-column:span 6}
       nav ul{display:none;position:absolute;right:16px;top:68px;background:#fff;border:1px solid var(--stroke);padding:10px;border-radius:12px;box-shadow:var(--shadow)}
       nav ul.open{display:flex;flex-direction:column}
       .menu-btn{display:inline-flex;gap:.4rem;align-items:center;border:1px solid var(--stroke);padding:.5rem .7rem;border-radius:10px;color:var(--muted);background:#f9fafb}
     }
-    @media (max-width: 560px){
-      .card{grid-column:span 12}
-    }
+    @media (max-width: 560px){.card{grid-column:span 12}}
   </style>
 </head>
 <body>
@@ -106,37 +102,27 @@
     <section id="projects">
       <h2>Projects</h2>
       <div class="grid">
-        <!-- Keep it clean: 3 works -->
         <article class="card">
           <a href="#" class="proj" data-title="Infographic Design" data-desc="Data simplified into a clean visual hierarchy." data-image="YOUR_FULL_IMAGE_URL_1">
-            <div class="thumb" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l4-4 4 4 4-4 4 4"/></svg>
-            </div>
+            <div class="thumb" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l4-4 4 4 4-4 4 4"/></svg></div>
             <div class="inner"><h3>Infographic Design</h3><p>Visual hierarchy / data</p></div>
           </a>
         </article>
-
         <article class="card">
           <a href="#" class="proj" data-title="Collage" data-desc="Digital collage exploring texture, layering, and narrative." data-image="YOUR_FULL_IMAGE_URL_2">
-            <div class="thumb" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l4-4 4 4 4-4 4 4"/></svg>
-            </div>
+            <div class="thumb" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l4-4 4 4 4-4 4 4"/></svg></div>
             <div class="inner"><h3>Collage</h3><p>Texture / narrative</p></div>
           </a>
         </article>
-
         <article class="card">
           <a href="#" class="proj" data-title="Short Story — “How To Pick Up Girls”" data-desc="Short fiction with minimalist layout. PDF/excerpt available." data-image="YOUR_FULL_IMAGE_URL_3">
-            <div class="thumb" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l4-4 4 4 4-4 4 4"/></svg>
-            </div>
-            <div class="inner"><h3>Short Story Video</h3><p>Editorial / layout</p></div>
+            <div class="thumb" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l4-4 4 4 4-4 4 4"/></svg></div>
+            <div class="inner"><h3>Short Story — “How To Pick Up Girls”</h3><p>Editorial / layout</p></div>
           </a>
         </article>
       </div>
     </section>
 
-    <!-- Modal viewer -->
     <div id="viewer" aria-hidden="true">
       <div class="viewer-bg" onclick="closeViewer()"></div>
       <div class="viewer-card" role="dialog" aria-modal="true">
@@ -149,7 +135,7 @@
 
     <section id="contact">
       <h2>Contact</h2>
-      <p class="hero"><a href="mailto:jlee2296@wisc.edu">jlee2296@wisc.edu</a> · <a href="mailto:yoosunlee@gmail.com">yoosunlee@gmail.com</a></p>
+      <p><a href="mailto:jlee2296@wisc.edu">jlee2296@wisc.edu</a> · <a href="mailto:yoosunlee@gmail.com">yoosunlee@gmail.com</a></p>
     </section>
   </main>
 
@@ -158,49 +144,16 @@
   </footer>
 
   <script>
-    function toggleMenu(){
-      const m=document.getElementById('menu');
-      m.classList.toggle('open');
-    }
+    function toggleMenu(){const m=document.getElementById('menu');m.classList.toggle('open');}
     document.getElementById('y').textContent=new Date().getFullYear();
-
     const viewer=document.getElementById('viewer');
     const vTitle=document.getElementById('viewer-title');
     const vMedia=document.getElementById('viewer-media');
     const vDesc=document.getElementById('viewer-desc');
-
-    function openViewer({title,desc,image,video}){
-      vTitle.textContent=title||'';
-      vDesc.textContent=desc||'';
-      vMedia.innerHTML='';
-      if(video){
-        const iframe=document.createElement('iframe');
-        iframe.src=video;iframe.width='100%';iframe.height='480';iframe.allowFullscreen=true;
-        vMedia.appendChild(iframe);
-      }else if(image){
-        const img=document.createElement('img');
-        img.src=image;img.alt=title||'project image';
-        vMedia.appendChild(img);
-      }
-      viewer.classList.add('open');
-      viewer.setAttribute('aria-hidden','false');
-    }
-    function closeViewer(){
-      viewer.classList.remove('open');
-      viewer.setAttribute('aria-hidden','true');
-    }
-
-    document.querySelectorAll('.proj').forEach(a=>{
-      a.addEventListener('click',e=>{
-        e.preventDefault();
-        openViewer({
-          title:a.dataset.title,
-          desc:a.dataset.desc,
-          image:a.dataset.image,
-          video:a.dataset.video
-        });
-      })
-    });
+    function openViewer({title,desc,image,video}){vTitle.textContent=title||'';vDesc.textContent=desc||'';vMedia.innerHTML='';if(video){const iframe=document.createElement('iframe');iframe.src=video;iframe.width='100%';iframe.height='480';iframe.allowFullscreen=true;vMedia.appendChild(iframe);}else if(image){const img=document.createElement('img');img.src=image;img.alt=title||'project image';vMedia.appendChild(img);}viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');}
+    function closeViewer(){viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');}
+    document.querySelectorAll('.proj').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();openViewer({title:a.dataset.title,desc:a.dataset.desc,image:a.dataset.image,video:a.dataset.video});});});
   </script>
 </body>
 </html>
+
