@@ -69,6 +69,13 @@
       .intro-text{text-align:center;align-items:center}
       .actions{justify-content:center}
     }
+  
+    /* --- Modal viewer (overlay) styles: ensure it doesn't push page and sits on top --- */
+    #viewer{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+    #viewer.open{display:flex}
+    #viewer .viewer-bg{position:absolute;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(2px)}
+    #viewer .viewer-card{position:relative;width:min(900px,92vw);max-height:88vh;overflow:auto;background:#fff;border:1px solid var(--stroke);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+    #viewer .viewer-close{position:absolute;top:10px;right:12px;border:0;background:#f3f4f6;border:1px solid var(--stroke);border-radius:10px;padding:.4rem .6rem;font-size:18px;cursor:pointer}
   </style>
 </head>
 <body>
@@ -94,7 +101,7 @@
           <h1>Joan Lee</h1>
           <p>UW–Madison · Communication Arts & Information Science · Digital Studies</p>
           <div class="actions">
-            <a class="btn" href="assets/Joan_Lee_Resume.pdf" download="Joan_Lee_Resume.pdf">Resume</a>
+            <a class="btn" href="assets/Joan_Lee_Resume.pdf" download="Joan_Lee_Resume.pdf">⬇️ Resume</a>
             <a class="btn" href="https://www.linkedin.com/in/yusunjoanlee" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
@@ -191,10 +198,10 @@
       <p style="text-align:center"><a href="mailto:jlee2296@wisc.edu">jlee2296@wisc.edu</a> · <a href="mailto:yoosunlee@gmail.com">yoosunlee@gmail.com</a></p>
     </section>
       <!-- Viewer modal (restored) -->
-    <div id="viewer" aria-hidden="true" style="display:none;">
-      <div class="viewer-bg" onclick="closeViewer()" style="position:absolute;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(2px)"></div>
-      <div class="viewer-card" role="dialog" aria-modal="true" style="position:relative;width:min(900px,92vw);max-height:88vh;overflow:auto;background:#fff;border:1px solid var(--stroke);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.25);margin:auto">
-        <button class="viewer-close" aria-label="Close" onclick="closeViewer()" style="position:absolute;top:10px;right:12px;border:0;background:#f3f4f6;border:1px solid var(--stroke);border-radius:10px;padding:.4rem .6rem;font-size:18px;cursor:pointer">×</button>
+    <div id="viewer" aria-hidden="true">
+      <div class="viewer-bg" onclick="closeViewer()"></div>
+      <div class="viewer-card" role="dialog" aria-modal="true">
+        <button class="viewer-close" aria-label="Close" onclick="closeViewer()">×</button>
         <h3 id="viewer-title" style="margin:18px 20px 8px"></h3>
         <div id="viewer-media"></div>
         <p id="viewer-desc" class="viewer-desc" style="color:var(--muted);padding:0 20px 20px"></p>
@@ -210,21 +217,25 @@
     function toggleMenu(){const m=document.getElementById('menu');m.classList.toggle('open');}
     document.getElementById('y').textContent=new Date().getFullYear();
 
-    // Restore viewer interactions
+    // Modal viewer logic (overlay)
     const viewer=document.getElementById('viewer');
     const vTitle=document.getElementById('viewer-title');
     const vMedia=document.getElementById('viewer-media');
     const vDesc=document.getElementById('viewer-desc');
+
     function openViewer({title,desc,image,video}){
-      vTitle.textContent=title||''; vDesc.textContent=desc||''; vMedia.innerHTML='';
+      vTitle.textContent=title||'';
+      vDesc.textContent=desc||'';
+      vMedia.innerHTML='';
       if(video){
         const iframe=document.createElement('iframe');
         iframe.src=String(video).replace('youtube.com','youtube-nocookie.com');
         iframe.width='100%'; iframe.height='480'; iframe.allowFullscreen=true;
         iframe.setAttribute('title', (title||'Video') + ' player');
         iframe.setAttribute('loading','lazy');
+        iframe.setAttribute('referrerpolicy','no-referrer');
         vMedia.appendChild(iframe);
-      } else if(image && String(image).toLowerCase().endsWith('.pdf')) {
+      } else if(image && String(image).toLowerCase().endsWith('.pdf')){
         const obj=document.createElement('object');
         obj.data=image; obj.type='application/pdf'; obj.style.width='100%'; obj.style.height='80vh';
         vMedia.appendChild(obj);
@@ -232,10 +243,15 @@
         const img=document.createElement('img'); img.src=image; img.alt=title||'project image';
         vMedia.appendChild(img);
       }
-      viewer.style.display='flex';
+      viewer.classList.add('open');
       viewer.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
     }
-    function closeViewer(){viewer.style.display='none'; viewer.setAttribute('aria-hidden','true');}
+    function closeViewer(){
+      viewer.classList.remove('open');
+      viewer.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+    }
     document.querySelectorAll('.proj').forEach(a=>{
       a.addEventListener('click',e=>{
         e.preventDefault();
@@ -246,4 +262,3 @@
 </body>
 </html>
 </html>
-
