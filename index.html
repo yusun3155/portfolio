@@ -39,7 +39,6 @@
 
     .hero{padding:86px 0 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
 
-    /* Profile layout changed to rectangular side-by-side */
     .intro{
       display:flex;
       align-items:center;
@@ -61,6 +60,8 @@
     }
     .intro-text h1{font-size:clamp(26px,4vw,40px);margin:0 0 6px;}
     .intro-text p{margin:0;color:var(--muted)}
+    .linkedin {color:#0077b5;text-decoration:none;font-weight:500;}
+    .linkedin:hover{text-decoration:underline;}
 
     section{padding:56px 0;border-top:1px solid var(--stroke)}
     section:first-of-type{border-top:0}
@@ -112,7 +113,10 @@
         <img src="assets/joan-profile.jpg" alt="Profile photo of Joan Lee">
         <div class="intro-text">
           <h1>Joan Lee</h1>
-          <p>UW–Madison · Communication Arts & Information Science · Digital Studies</p>
+          <p>
+            UW–Madison · Communication Arts & Information Science · Digital Studies<br>
+            <a href="https://www.linkedin.com/in/yusunjoanlee" target="_blank" rel="noopener noreferrer" class="linkedin">linkedin.com/in/yusunjoanlee</a>
+          </p>
         </div>
       </div>
     </section>
@@ -120,7 +124,63 @@
     <section id="projects">
       <h2>Projects</h2>
       <div class="grid">
-        <!-- Example projects remain unchanged -->
+        <!-- 프로젝트 카드들 원래 코드 다시 복원 -->
+        <article class="card">
+          <a href="#" class="proj" data-title="Visual Identity Design" data-desc="A bold visual identity poster for a modern fast-casual burger concept that highlights playful typography, color contrast, and brand storytelling." data-image="assets/funkyfreshburgers.png">
+            <div class="thumb">
+              <img src="assets/funkyfreshburgers.png" alt="Funky Fresh Burgers brand poster by Joan Lee">
+            </div>
+            <div class="inner">
+              <h3>Brand Poster Design</h3>
+              <p>Identity / visual storytelling</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="proj" data-title="Principle of Design — Playlist" data-desc="A poster design for my favorite songs playlist, featuring a custom album cover and song descriptions. This design highlights the essence of each track and brings together my top picks with a cohesive and engaging visual style." data-video="assets/PRINCIPLE_OF_DESIGN.pdf" data-image="assets/principle-thumb.jpg">
+            <div class="thumb">
+              <img src="assets/principle-thumb.jpg" alt="Principle of Design project thumbnail">
+            </div>
+            <div class="inner">
+              <h3>Principle of Design</h3>
+              <p>Editorial / layout</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="proj" data-title="Collage" data-desc="This magazine cover blends a retro, coastal aesthetic with whimsical underwater elements. The playful integration of fish, bubbles, and figures within the typography adds a surreal twist to a classic beach scene. The contrast between the black-and-white photograph and the vibrant aquatic details creates a dynamic visual experience, symbolizing the connection between life above and below the ocean's surface. This piece combines vintage style with modern, artistic elements to evoke the carefree spirit of coastal living." data-image="assets/joancollage.jpeg">
+            <div class="thumb">
+              <img src="assets/joancollage.jpeg" alt="Collage artwork by Joan Lee">
+            </div>
+            <div class="inner"><h3>Collage</h3><p>Texture / narrative</p></div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="proj" data-title="Short Story Video" data-desc="A comedy short story video, blending wit and humor into an engaging and entertaining experience." data-video="https://www.youtube.com/embed/5XtKpKKUSzY" data-image="assets/storythumb.jpg">
+            <div class="thumb">
+              <img src="assets/storythumb.jpg" alt="Short Story video thumbnail by Joan Lee">
+            </div>
+            <div class="inner">
+              <h3>Short Story Video</h3>
+              <p>Editorial / narrative/ video</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="proj" data-title="Art Student Interview" data-desc="A focused interview exploring the creative process and insights of a Pratt Institute art student. Discover her approach to art, influences, and experiences at Pratt, providing a snapshot of her unique perspective and artistic journey." data-video="https://www.youtube.com/embed/JGvUScNk1C8" data-image="assets/artthumb.jpg">
+            <div class="thumb">
+              <img src="assets/artthumb.jpg" alt="An Interview with an Art Student thumbnail">
+            </div>
+            <div class="inner">
+              <h3>Art Student Interview</h3>
+              <p>Interview / video</p>
+            </div>
+          </a>
+        </article>
       </div>
     </section>
 
