@@ -183,6 +183,30 @@
     @media (prefers-reduced-motion: reduce){
       .reveal, .reveal-btn, .card{ transition:none !important }
     }
+
+  /* ===== Hero subtitle tweak: smaller + one-line on desktop ===== */
+.intro-text p{
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: clamp(14px, 1.6vw, 18px);   /* ↓ 더 작게 */
+  line-height: 1.5;                      /* 줄간격 약간 타이트 */
+  max-width: 720px;                       /* 너무 넓어지지 않게 */
+}
+
+/* 데스크탑에서는 한 줄로 고정 (모바일은 자동 줄바꿈) */
+@media (min-width: 980px){
+  .intro-text p{
+    white-space: nowrap;                 /* ← 한 줄 */
+    text-wrap: nowrap;                   /* 일부 브라우저 보조 */
+  }
+}
+
+/* 상·하 여백 살짝 정리 (히어로 밸런스) */
+.hero{ padding: 84px 0 48px; }
+.actions{ margin-top: 6px; }
+
+
+    
   </style>
 </head>
 
