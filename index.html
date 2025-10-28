@@ -252,7 +252,7 @@
   to {opacity:1; transform:translateY(0);}
 }
 
-/* 🎀 Custom Pink Cursor */
+/* 🎀핑크 커서 */
 body, a, button { cursor: none; }
 
 .cursor {
@@ -265,6 +265,7 @@ body, a, button { cursor: none; }
   transform: translate(-50%, -50%);
   transition: transform .08s ease, width .18s, height .18s, background .18s;
   z-index: 9999;
+  opacity: 1; /* ✅ 항상 보이게 */
 }
 
 .cursor.active {
@@ -273,7 +274,9 @@ body, a, button { cursor: none; }
   transform: translate(-50%, -50%) scale(1.02);
 }
 
-@media (max-width: 820px), (pointer: coarse) {
+/* 모바일 숨김 */
+@media (pointer: coarse) {
+  body, a, button { cursor: auto; }
   .cursor { display: none; }
 }
 
