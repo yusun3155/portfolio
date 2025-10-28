@@ -205,6 +205,53 @@
 .hero{ padding: 84px 0 48px; }
 .actions{ margin-top: 6px; }
 
+    .chat-bubbles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+
+/* 공통 버블 스타일 */
+.bubble {
+  max-width: 280px;
+  padding: 10px 16px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: "Pretendard", sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  position: relative;
+  animation: fadeInUp 0.6s ease both;
+}
+
+/* 오른쪽(내가 보낸 말풍선) */
+.bubble.right {
+  align-self: flex-end;
+  background: linear-gradient(145deg, #fce1e7, #f9d3db);
+  color: #2b2b2b;
+  border-top-right-radius: 4px;
+  margin-right: 12%;
+  border: 1px solid #f5b8c4;
+}
+
+/* 왼쪽(상대방 말풍선) */
+.bubble.left {
+  align-self: flex-start;
+  background: #fffaf8;
+  color: #2b2b2b;
+  border-top-left-radius: 4px;
+  margin-left: 12%;
+  border: 1px solid #f0e0dc;
+}
+
+/* 등장 애니메이션 */
+@keyframes fadeInUp {
+  from {opacity:0; transform:translateY(10px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
 
     
   </style>
