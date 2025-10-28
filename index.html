@@ -252,36 +252,6 @@
   to {opacity:1; transform:translateY(0);}
 }
 
-/* 🎀핑크 커서 */
-body, a, button { cursor: none; }
-
-.cursor {
-  position: fixed;
-  top: 0; left: 0;
-  width: 26px; height: 26px;
-  border: 2px solid rgba(232,193,181,0.8);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: all .18s ease;
-  z-index: 9999;
-  backdrop-filter: blur(2px);
-  box-shadow: 0 0 8px rgba(232,193,181,0.4);
-}
-
-.cursor.active {
-  width: 42px; height: 42px;
-  background: rgba(232,193,181,0.15);
-  box-shadow: 0 0 16px rgba(232,193,181,0.5);
-  transform: translate(-50%, -50%) scale(1.05);
-}
-
-
-/* 모바일 숨김 */
-@media (pointer: coarse) {
-  body, a, button { cursor: auto; }
-  .cursor { display: none; }
-}
 
     
   </style>
@@ -482,17 +452,6 @@ body, a, button { cursor: none; }
     }
     toggleBtn?.addEventListener('click', ()=> setOpenState(!revealBox.classList.contains('open')));
     setOpenState(false); // 초기엔 닫힘
-
-  // 🎀 커서
-    const c = document.querySelector('.cursor');
-    document.addEventListener('mousemove', e => {
-      c.style.left = e.clientX + 'px';
-      c.style.top = e.clientY + 'px';
-    });
-    document.querySelectorAll('a, button, .btn').forEach(el => {
-      el.addEventListener('mouseenter', () => c.classList.add('active'));
-      el.addEventListener('mouseleave', () => c.classList.remove('active'));
-    });
 
     
   </script>
