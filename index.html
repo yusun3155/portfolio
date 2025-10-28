@@ -11,14 +11,15 @@
 
   <style>
     :root{
-      --bg:#f6efe8;        /* 크림 베이지 */
-      --panel:#ffffffF2;   /* 반투명 카드 */
-      --text:#2b2b2b;      /* 본문 텍스트 */
-      --muted:#6b6762;     /* 서브 텍스트 */
-      --stroke:#efe9e3;    /* 라인/보더 */
+      --bg:#ebe9e6;          /* 따뜻한 그레이 */
+      --panel:#ffffffd9;     /* 부드러운 화이트 패널 */
+      --text:#2b2b2b;        /* 본문 텍스트 */
+      --muted:#6b6762;       /* 서브 텍스트 */
+      --stroke:#dcd8d3;      /* 라인/보더 */
       --radius:18px;
       --shadow:0 18px 40px rgba(0,0,0,.10);
-      --accent:#e8c1b5;    /* 누드 핑크 포인트 */
+      --accent:#e8c1b5;      /* 포인트 색상 */
+      --dot:#d4cfc9;         /* 폴카도트 점색 */
     }
 
     *{box-sizing:border-box}
@@ -35,7 +36,7 @@
       content:"";
       position:fixed; inset:0; z-index:-1;
       background:
-        radial-gradient(circle, #d9d6d0 1.2px, transparent 1.2px) 0 0/28px 28px,
+        radial-gradient(circle, var(--dot) 1.2px, transparent 1.2px) 0 0/28px 28px,
         var(--bg);
     }
     @media (max-width:768px){body::before{position:absolute}}
@@ -47,19 +48,29 @@
     /* Header */
     header{
       position:sticky; top:0; z-index:40;
-      background:rgba(255,255,255,.80);
+      background:var(--panel);
       backdrop-filter:saturate(140%) blur(8px);
       border-bottom:1px solid var(--stroke);
     }
     .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
     .brand{font-weight:500;letter-spacing:.3px;color:var(--muted);font-size:16px}
     nav ul{display:flex;gap:.6rem;list-style:none;margin:0;padding:0}
-    nav a{color:var(--muted);padding:.55rem .75rem;border-radius:10px;transition:background .2s}
-    nav a:hover{background:#fff;color:var(--text);border:1px solid var(--stroke)}
+    nav a{
+      color:var(--muted);
+      padding:.55rem .75rem;
+      border-radius:10px;
+      border:1px solid transparent;
+      transition:background .2s, border-color .2s, color .2s;
+    }
+    nav a:hover{
+      background:#ffffffef;
+      color:var(--text);
+      border-color:var(--stroke);
+    }
 
-    /* ===== Hero (센터 정렬) ===== */
+    /* ===== Hero ===== */
     .hero{
-      padding:92px 0 56px;
+      padding:84px 0 48px;
       position:relative;
       text-align:center;
     }
@@ -67,7 +78,7 @@
       display:flex; align-items:center; justify-content:center;
     }
     .intro-text{
-      display:flex; flex-direction:column; align-items:center; /* 중앙 정렬 */
+      display:flex; flex-direction:column; align-items:center;
       text-align:center; max-width:680px;
     }
     .intro-text h1{
@@ -75,8 +86,17 @@
       font-size:clamp(34px,5vw,64px);
       margin:0 0 10px; letter-spacing:.2px;
     }
-    .intro-text p{margin:0 0 18px;color:var(--muted); font-size:clamp(16px,2.2vw,22px)}
-    .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .intro-text p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: clamp(14px, 1.6vw, 18px);
+      line-height: 1.5;
+      max-width: 720px;
+    }
+    @media (min-width: 980px){
+      .intro-text p{white-space: nowrap; text-wrap: nowrap;}
+    }
+    .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:6px}
     .btn{
       display:inline-flex;align-items:center;gap:.5rem;
       padding:.7rem 1.2rem;border-radius:999px;
@@ -87,7 +107,6 @@
     }
     .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.10)}
 
-    /* Section base */
     section{padding:56px 0;border-top:1px solid var(--stroke)}
     section:first-of-type{border-top:0}
     h2{
@@ -97,12 +116,12 @@
       text-align:center;color:var(--text);
     }
 
-    /* ===== Projects: 풀폭 스트라이프 + 리빌 ===== */
+    /* ===== Projects ===== */
     #projects{
       position:relative;
       padding:80px 0 100px;
-      border-top:1px solid #e8dfd8;
-      border-bottom:1px solid #e8dfd8;
+      border-top:1px solid var(--stroke);
+      border-bottom:1px solid var(--stroke);
       z-index:0;
     }
     #projects::before{
@@ -113,8 +132,8 @@
       background:
         repeating-linear-gradient(
           90deg,
-          #e7edf1 0, #e7edf1 40px,     /* 소라 */
-          #fffaf6 40px, #fffaf6 80px   /* 아이보리 */
+          #e7edf1 0, #e7edf1 40px,
+          #fffaf6 40px, #fffaf6 80px
         );
       z-index:-1;
     }
@@ -139,7 +158,6 @@
     .reveal.open{ max-height:2000px; opacity:1; transform:translateY(0) }
     .reveal.collapsed{ pointer-events:none }
 
-    /* Grid & Cards */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
     .card{
       grid-column:span 4;
@@ -149,7 +167,7 @@
       overflow:hidden;
       transition:transform .18s ease, box-shadow .18s ease,border-color .18s ease;
       backdrop-filter:blur(6px) saturate(120%);
-      box-shadow:0 4px 12px rgba(0,0,0,.05); /* 패턴 위에서 은은하게 */
+      box-shadow:0 4px 12px rgba(0,0,0,.05);
     }
     .card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08);border-color:#e7ddd5}
     .thumb{aspect-ratio:4/3;background:linear-gradient(180deg,#fafafa,#f5f5f5);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--stroke)}
@@ -157,7 +175,6 @@
     .inner h3{margin:0 0 4px;font-size:18px;font-weight:600}
     .inner p{margin:0;color:var(--muted);font-size:14px}
 
-    /* Footer */
     footer{padding:42px 0;border-top:1px solid var(--stroke);color:var(--muted);text-align:center;font-size:14px}
 
     @media (max-width:700px){
@@ -179,6 +196,7 @@
       background:#f3f4f6;border:1px solid var(--stroke);
       border-radius:10px;padding:.4rem .6rem;font-size:18px;cursor:pointer;
     }
+
 
     @media (prefers-reduced-motion: reduce){
       .reveal, .reveal-btn, .card{ transition:none !important }
@@ -459,6 +477,3 @@ a, button, .btn { cursor: pointer !important; } /* 클릭 요소만 손모양 �
 
 </body>
 </html>
-
-
-
