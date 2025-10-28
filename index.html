@@ -7,61 +7,106 @@
   <meta name="description" content="Joan Lee — Portfolio" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#ffffff;
-      --panel:#ffffff;
-      --text:#0f172a;
-      --muted:#6b7280;
-      --stroke:#e5e7eb;
-      --radius:16px;
-      --shadow:0 12px 32px rgba(0,0,0,.08);
-      --accent:#111827;
+      --bg:#f6efe8;        /* 크림 베이지 */
+      --panel:#ffffffF2;   /* 반투명 카드 */
+      --text:#2b2b2b;      /* 본문 텍스트 */
+      --muted:#6b6762;     /* 서브 텍스트 */
+      --stroke:#efe9e3;    /* 라인/보더 */
+      --radius:18px;
+      --shadow:0 18px 40px rgba(0,0,0,.10);
+      --accent:#e8c1b5;    /* 누드 핑크 포인트 */
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0;background:var(--bg);color:var(--text);
+      margin:0;
       font:16px/1.65 "Pretendard", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:var(--bg); color:var(--text);
       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     }
+
+    /* 🎀 Polkadot background */
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:-1;
+      background:
+        radial-gradient(circle, #d9d6d0 1.2px, transparent 1.2px) 0 0/28px 28px,
+        var(--bg);
+    }
+    @media (max-width:768px){body::before{position:absolute}}
+
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     .container{width:min(1080px,92vw);margin:0 auto}
 
-    header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke)}
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:40;
+      background:rgba(255,255,255,.80);
+      backdrop-filter:saturate(140%) blur(8px);
+      border-bottom:1px solid var(--stroke);
+    }
     .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-    .brand{font-weight:400;letter-spacing:.3px;color:var(--muted);font-size:16px}
+    .brand{font-weight:500;letter-spacing:.3px;color:var(--muted);font-size:16px}
     nav ul{display:flex;gap:.6rem;list-style:none;margin:0;padding:0}
     nav a{color:var(--muted);padding:.55rem .75rem;border-radius:10px;transition:background .2s}
-    nav a:hover{background:#f3f4f6;color:#111827}
-    .menu-btn{display:none}
+    nav a:hover{background:#fff;color:var(--text);border:1px solid var(--stroke)}
 
+    /* Hero section */
     .hero{padding:86px 0 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
-
     .intro{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:32px}
-    .intro img{width:180px;height:220px;object-fit:cover;border:1px solid var(--stroke);border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+    .intro img{
+      width:180px;height:220px;object-fit:cover;
+      border:1px solid var(--stroke);border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
     .intro-text{display:flex;flex-direction:column;justify-content:center;text-align:left;max-width:520px}
-    .intro-text h1{font-size:clamp(28px,4vw,42px);margin:0 0 6px}
+    .intro-text h1{
+      font-family:"Fraunces", serif;
+      font-size:clamp(30px,4.2vw,46px);
+      margin:0 0 6px; letter-spacing:.2px;
+    }
     .intro-text p{margin:0 0 16px;color:var(--muted)}
-
     .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border-radius:12px;border:1px solid var(--stroke);background:#ffffff;color:#111827;font-weight:500;transition:transform .12s ease, box-shadow .12s ease;cursor:pointer}
-    .btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.08)}
+    .btn{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.6rem 1rem;border-radius:14px;
+      border:1.2px solid var(--text);
+      background:linear-gradient(#ffffff, #ffffffcc);
+      font-weight:500;transition:transform .12s ease, box-shadow .12s ease;cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.08)}
 
     section{padding:56px 0;border-top:1px solid var(--stroke)}
     section:first-of-type{border-top:0}
-    h2{font-size:clamp(20px,2.4vw,28px);margin:0 0 18px;text-align:center;color:#111827}
+    h2{
+      font-family:"Fraunces", serif;
+      font-size:clamp(20px,2.4vw,28px);
+      margin:0 0 18px;
+      text-align:center;color:var(--text);
+    }
 
+    /* Project grid */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-    .card{grid-column:span 4;background:var(--panel);border:1px solid var(--stroke);border-radius:var(--radius);overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .card{
+      grid-column:span 4;
+      background:var(--panel);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      overflow:hidden;
+      transition:transform .18s ease, box-shadow .18s ease,border-color .18s ease;
+      backdrop-filter:blur(6px) saturate(120%);
+    }
+    .card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#e7ddd5}
     .thumb{aspect-ratio:4/3;background:linear-gradient(180deg,#fafafa,#f5f5f5);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--stroke)}
     .inner{padding:14px 14px 16px}
-    .inner h3{margin:0 0 4px;font-size:18px}
+    .inner h3{margin:0 0 4px;font-size:18px;font-weight:600}
     .inner p{margin:0;color:var(--muted);font-size:14px}
 
+    /* Footer */
     footer{padding:42px 0;border-top:1px solid var(--stroke);color:var(--muted);text-align:center;font-size:14px}
 
     @media (max-width:700px){
@@ -69,20 +114,28 @@
       .intro-text{text-align:center;align-items:center}
       .actions{justify-content:center}
     }
-  
-    /* --- Modal viewer (overlay) styles: ensure it doesn't push page and sits on top --- */
+
+    /* Modal viewer */
     #viewer{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
     #viewer.open{display:flex}
     #viewer .viewer-bg{position:absolute;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(2px)}
-    #viewer .viewer-card{position:relative;width:min(900px,92vw);max-height:88vh;overflow:auto;background:#fff;border:1px solid var(--stroke);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
-    #viewer .viewer-close{position:absolute;top:10px;right:12px;border:0;background:#f3f4f6;border:1px solid var(--stroke);border-radius:10px;padding:.4rem .6rem;font-size:18px;cursor:pointer}
+    #viewer .viewer-card{
+      position:relative;width:min(900px,92vw);max-height:88vh;overflow:auto;
+      background:#fff;border:1px solid var(--stroke);
+      border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.18)
+    }
+    #viewer .viewer-close{
+      position:absolute;top:10px;right:12px;border:0;
+      background:#f3f4f6;border:1px solid var(--stroke);
+      border-radius:10px;padding:.4rem .6rem;font-size:18px;cursor:pointer;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div class="container nav">
       <a href="#top" class="brand">Portfolio</a>
-      <button class="menu-btn" aria-label="Open Menu" onclick="toggleMenu()">☰ Menu</button>
       <nav>
         <ul id="menu">
           <li><a href="#projects">Projects</a></li>
@@ -111,83 +164,56 @@
     <section id="projects">
       <h2>Projects</h2>
       <div class="grid">
-             <!-- Brand Poster Design -->
         <article class="card">
           <a href="#" class="proj"
              data-title="Visual Identity Design"
-             data-desc="A bold visual identity poster for a modern fast-casual burger concept that highlights playful typography, color contrast, and brand storytelling."
+             data-desc="A bold visual identity poster for a modern fast-casual burger concept highlighting playful typography and brand storytelling."
              data-image="assets/funkyfreshburgers.png">
-            <div class="thumb">
-              <img src="assets/funkyfreshburgers.png" alt="Funky Fresh Burgers brand poster by Joan Lee" loading="lazy" decoding="async">
-            </div>
-            <div class="inner">
-              <h3>Brand Poster Design</h3>
-              <p>Identity / visual storytelling</p>
-            </div>
+            <div class="thumb"><img src="assets/funkyfreshburgers.png" alt="Brand poster"></div>
+            <div class="inner"><h3>Brand Poster Design</h3><p>Identity / visual storytelling</p></div>
           </a>
         </article>
 
-        <!-- Principle of Design -->
         <article class="card">
           <a href="#" class="proj"
              data-title="Principle of Design — Playlist"
-             data-desc="A poster design for my favorite songs playlist, featuring a custom album cover and song descriptions. This design highlights the essence of each track and brings together my top picks with a cohesive and engaging visual style."
+             data-desc="A poster design for a favorite playlist featuring custom album art and layout typography."
              data-video="assets/PRINCIPLE_OF_DESIGN.pdf"
              data-image="assets/principle-thumb.jpg">
-            <div class="thumb">
-              <img src="assets/principle-thumb.jpg" alt="Principle of Design project thumbnail" loading="lazy" decoding="async">
-            </div>
-            <div class="inner">
-              <h3>Principle of Design</h3>
-              <p>Editorial / layout</p>
-            </div>
+            <div class="thumb"><img src="assets/principle-thumb.jpg" alt="Principle of Design"></div>
+            <div class="inner"><h3>Principle of Design</h3><p>Editorial / layout</p></div>
           </a>
         </article>
 
-        <!-- Collage -->
         <article class="card">
           <a href="#" class="proj"
              data-title="Collage"
-             data-desc="This magazine cover blends a retro, coastal aesthetic with whimsical underwater elements. The playful integration of fish, bubbles, and figures within the typography adds a surreal twist to a classic beach scene. The contrast between the black-and-white photograph and the vibrant aquatic details creates a dynamic visual experience, symbolizing the connection between life above and below the ocean's surface. This piece combines vintage style with modern, artistic elements to evoke the carefree spirit of coastal living."
+             data-desc="A magazine-style collage merging retro coastal vibes with surreal aquatic details."
              data-image="assets/joancollage.jpeg">
-            <div class="thumb">
-              <img src="assets/joancollage.jpeg" alt="Collage artwork by Joan Lee" loading="lazy" decoding="async">
-            </div>
+            <div class="thumb"><img src="assets/joancollage.jpeg" alt="Collage artwork"></div>
             <div class="inner"><h3>Collage</h3><p>Texture / narrative</p></div>
           </a>
         </article>
 
-        <!-- Short Story Video -->
         <article class="card">
           <a href="#" class="proj"
              data-title="Short Story Video"
-             data-desc="A comedy short story video, blending wit and humor into an engaging and entertaining experience."
+             data-desc="A comedic short film blending humor and editing rhythm for engaging storytelling."
              data-video="https://www.youtube.com/embed/5XtKpKKUSzY"
              data-image="assets/storythumb.jpg">
-            <div class="thumb">
-              <img src="assets/storythumb.jpg" alt="Short Story video thumbnail by Joan Lee" loading="lazy" decoding="async">
-            </div>
-            <div class="inner">
-              <h3>Short Story Video</h3>
-              <p>Editorial / narrative/ video</p>
-            </div>
+            <div class="thumb"><img src="assets/storythumb.jpg" alt="Short Story video"></div>
+            <div class="inner"><h3>Short Story Video</h3><p>Narrative / video</p></div>
           </a>
         </article>
 
-        <!-- Art Student Interview -->
         <article class="card">
           <a href="#" class="proj"
              data-title="Art Student Interview"
-             data-desc="A focused interview exploring the creative process and insights of a Pratt Institute art student. Discover her approach to art, influences, and experiences at Pratt, providing a snapshot of her unique perspective and artistic journey."
+             data-desc="An interview exploring a Pratt Institute art student's creative process and inspiration."
              data-video="https://www.youtube.com/embed/JGvUScNk1C8"
              data-image="assets/artthumb.jpg">
-            <div class="thumb">
-              <img src="assets/artthumb.jpg" alt="An Interview with an Art Student thumbnail" loading="lazy" decoding="async">
-            </div>
-            <div class="inner">
-              <h3>Art Student Interview</h3>
-              <p>Interview / video</p>
-            </div>
+            <div class="thumb"><img src="assets/artthumb.jpg" alt="Art Student Interview"></div>
+            <div class="inner"><h3>Art Student Interview</h3><p>Interview / video</p></div>
           </a>
         </article>
       </div>
@@ -195,16 +221,20 @@
 
     <section id="contact">
       <h2>Contact</h2>
-      <p style="text-align:center"><a href="mailto:jlee2296@wisc.edu">jlee2296@wisc.edu</a> · <a href="mailto:yoosunlee@gmail.com">yoosunlee@gmail.com</a></p>
+      <p style="text-align:center">
+        <a href="mailto:jlee2296@wisc.edu">jlee2296@wisc.edu</a> · 
+        <a href="mailto:yoosunlee@gmail.com">yoosunlee@gmail.com</a>
+      </p>
     </section>
-      <!-- Viewer modal (restored) -->
+
+    <!-- Modal Viewer -->
     <div id="viewer" aria-hidden="true">
       <div class="viewer-bg" onclick="closeViewer()"></div>
       <div class="viewer-card" role="dialog" aria-modal="true">
         <button class="viewer-close" aria-label="Close" onclick="closeViewer()">×</button>
         <h3 id="viewer-title" style="margin:18px 20px 8px"></h3>
         <div id="viewer-media"></div>
-        <p id="viewer-desc" class="viewer-desc" style="color:var(--muted);padding:0 20px 20px"></p>
+        <p id="viewer-desc" style="color:var(--muted);padding:0 20px 20px"></p>
       </div>
     </div>
   </main>
@@ -214,10 +244,7 @@
   </footer>
 
   <script>
-    function toggleMenu(){const m=document.getElementById('menu');m.classList.toggle('open');}
     document.getElementById('y').textContent=new Date().getFullYear();
-
-    // Modal viewer logic (overlay)
     const viewer=document.getElementById('viewer');
     const vTitle=document.getElementById('viewer-title');
     const vMedia=document.getElementById('viewer-media');
@@ -230,17 +257,17 @@
       if(video){
         const iframe=document.createElement('iframe');
         iframe.src=String(video).replace('youtube.com','youtube-nocookie.com');
-        iframe.width='100%'; iframe.height='480'; iframe.allowFullscreen=true;
-        iframe.setAttribute('title', (title||'Video') + ' player');
+        iframe.width='100%';iframe.height='480';iframe.allowFullscreen=true;
         iframe.setAttribute('loading','lazy');
-        iframe.setAttribute('referrerpolicy','no-referrer');
         vMedia.appendChild(iframe);
-      } else if(image && String(image).toLowerCase().endsWith('.pdf')){
+      } else if(image && image.toLowerCase().endsWith('.pdf')){
         const obj=document.createElement('object');
-        obj.data=image; obj.type='application/pdf'; obj.style.width='100%'; obj.style.height='80vh';
+        obj.data=image; obj.type='application/pdf';
+        obj.style.width='100%';obj.style.height='80vh';
         vMedia.appendChild(obj);
       } else if(image){
-        const img=document.createElement('img'); img.src=image; img.alt=title||'project image';
+        const img=document.createElement('img');
+        img.src=image; img.alt=title||'project image';
         vMedia.appendChild(img);
       }
       viewer.classList.add('open');
@@ -261,4 +288,4 @@
   </script>
 </body>
 </html>
-</html>
+
