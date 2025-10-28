@@ -252,7 +252,10 @@
   to {opacity:1; transform:translateY(0);}
 }
 
-
+/* --- Cursor RESET Patch (force default) --- */
+* { cursor: auto !important; }               /* 전체 기본 커서 */
+a, button, .btn { cursor: pointer !important; } /* 클릭 요소만 손모양 유지 */
+.cursor { display: none !important; }        /* 혹시 남아있던 커서 div 숨김 */
     
   </style>
 </head>
