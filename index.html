@@ -57,25 +57,25 @@
     nav a:hover{background:#fff;color:var(--text);border:1px solid var(--stroke)}
 
     /* Hero section */
-    .hero{padding:86px 0 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
-    .intro{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:32px}
-
-
+    .hero{
+      padding:86px 0 40px;
+      text-align:center;
+      display:flex;flex-direction:column;align-items:center;gap:12px
     }
-    .intro-text{display:flex;flex-direction:column;justify-content:center;text-align:left;max-width:520px}
+    .intro{
+      display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:32px
+    }
+    .intro-text{
+      display:flex;flex-direction:column;justify-content:center;
+      text-align:left;max-width:520px
+    }
     .intro-text h1{
       font-family:"Fraunces", serif;
       font-size:clamp(30px,4.2vw,46px);
       margin:0 0 6px; letter-spacing:.2px;
     }
     .intro-text p{margin:0 0 16px;color:var(--muted)}
-    .actions
-    {
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-    }
+    .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
     .btn{
       display:inline-flex;align-items:center;gap:.5rem;
       padding:.6rem 1rem;border-radius:14px;
@@ -104,30 +104,40 @@
       overflow:hidden;
       transition:transform .18s ease, box-shadow .18s ease,border-color .18s ease;
       backdrop-filter:blur(6px) saturate(120%);
+      box-shadow:0 4px 12px rgba(0,0,0,.05); /* 패턴 위에서 과하지 않게 */
     }
-    .card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#e7ddd5}
+    .card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08);border-color:#e7ddd5}
     .thumb{aspect-ratio:4/3;background:linear-gradient(180deg,#fafafa,#f5f5f5);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--stroke)}
     .inner{padding:14px 14px 16px}
     .inner h3{margin:0 0 4px;font-size:18px;font-weight:600}
     .inner p{margin:0;color:var(--muted);font-size:14px}
 
-    #projects {
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #dae6ec 0, #dae6ec 24px,
-      #fffaf6 24px, #fffaf6 48px
-    );
-  padding: 80px 0 100px;
-  border-top: 1px solid #e8dfd8;
-  border-bottom: 1px solid #e8dfd8;
-}
-#projects h2 {
-  font-family: "Fraunces", serif;
-  font-size: 32px;
-  margin-bottom: 40px;
-  color: #2b2b2b;
-}
+    /* ===================== Full-bleed Stripe Background for Projects ===================== */
+    #projects{
+      position:relative;
+      padding:80px 0 100px;              /* 섹션 여백 */
+      border-top:1px solid #e8dfd8;
+      border-bottom:1px solid #e8dfd8;
+      z-index:0;
+    }
+    /* 화면 전체 폭으로 스트라이프 확장 */
+    #projects::before{
+      content:"";
+      position:absolute; top:0; left:50%;
+      transform:translateX(-50%);
+      width:100vw; height:100%;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #e7edf1 0, #e7edf1 40px,       /* 소라색 */
+          #fffaf6 40px, #fffaf6 80px     /* 아이보리 */
+        );
+      z-index:-1;
+    }
+    #projects h2{
+      font-family:"Fraunces", serif;
+      font-size:32px; margin-bottom:40px; color:#2b2b2b;
+    }
 
     /* Footer */
     footer{padding:42px 0;border-top:1px solid var(--stroke);color:var(--muted);text-align:center;font-size:14px}
@@ -136,6 +146,7 @@
       .intro{flex-direction:column;gap:12px;text-align:center}
       .intro-text{text-align:center;align-items:center}
       .actions{justify-content:center}
+      .card{grid-column:span 12}
     }
 
     /* Modal viewer */
@@ -182,8 +193,11 @@
         </div>
       </div>
     </section>
+  </main>
 
-    <section id="projects">
+  <!-- Projects: 풀폭 스트라이프 배경이 섹션 자체에서 깔림 -->
+  <section id="projects">
+    <div class="container">
       <h2>Projects</h2>
       <div class="grid">
         <article class="card">
@@ -239,27 +253,29 @@
           </a>
         </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contact">
+  <section id="contact">
+    <div class="container">
       <h2>Contact</h2>
       <p style="text-align:center">
         <a href="mailto:jlee2296@wisc.edu">jlee2296@wisc.edu</a> · 
         <a href="mailto:yoosunlee@gmail.com">yoosunlee@gmail.com</a>
       </p>
-    </section>
-
-    <!-- Modal Viewer -->
-    <div id="viewer" aria-hidden="true">
-      <div class="viewer-bg" onclick="closeViewer()"></div>
-      <div class="viewer-card" role="dialog" aria-modal="true">
-        <button class="viewer-close" aria-label="Close" onclick="closeViewer()">×</button>
-        <h3 id="viewer-title" style="margin:18px 20px 8px"></h3>
-        <div id="viewer-media"></div>
-        <p id="viewer-desc" style="color:var(--muted);padding:0 20px 20px"></p>
-      </div>
     </div>
-  </main>
+  </section>
+
+  <!-- Modal Viewer -->
+  <div id="viewer" aria-hidden="true">
+    <div class="viewer-bg" onclick="closeViewer()"></div>
+    <div class="viewer-card" role="dialog" aria-modal="true">
+      <button class="viewer-close" aria-label="Close" onclick="closeViewer()">×</button>
+      <h3 id="viewer-title" style="margin:18px 20px 8px"></h3>
+      <div id="viewer-media"></div>
+      <p id="viewer-desc" style="color:var(--muted);padding:0 20px 20px"></p>
+    </div>
+  </div>
 
   <footer>
     <div class="container">© <span id="y"></span> Joan Lee · Portfolio</div>
@@ -310,4 +326,5 @@
   </script>
 </body>
 </html>
+
 
