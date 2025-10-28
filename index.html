@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#f6efe8;        /* 크림 베이지 */
@@ -56,45 +57,89 @@
     nav a{color:var(--muted);padding:.55rem .75rem;border-radius:10px;transition:background .2s}
     nav a:hover{background:#fff;color:var(--text);border:1px solid var(--stroke)}
 
-    /* Hero section */
+    /* ===== Hero (센터 정렬) ===== */
     .hero{
-      padding:86px 0 40px;
+      padding:92px 0 56px;
+      position:relative;
       text-align:center;
-      display:flex;flex-direction:column;align-items:center;gap:12px
     }
     .intro{
-      display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:32px
+      display:flex; align-items:center; justify-content:center;
     }
     .intro-text{
-      display:flex;flex-direction:column;justify-content:center;
-      text-align:left;max-width:520px
+      display:flex; flex-direction:column; align-items:center; /* 중앙 정렬 */
+      text-align:center; max-width:680px;
     }
     .intro-text h1{
       font-family:"Fraunces", serif;
-      font-size:clamp(30px,4.2vw,46px);
-      margin:0 0 6px; letter-spacing:.2px;
+      font-size:clamp(34px,5vw,64px);
+      margin:0 0 10px; letter-spacing:.2px;
     }
-    .intro-text p{margin:0 0 16px;color:var(--muted)}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .intro-text p{margin:0 0 18px;color:var(--muted); font-size:clamp(16px,2.2vw,22px)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
     .btn{
       display:inline-flex;align-items:center;gap:.5rem;
-      padding:.6rem 1rem;border-radius:14px;
+      padding:.7rem 1.2rem;border-radius:999px;
       border:1.2px solid var(--text);
       background:linear-gradient(#ffffff, #ffffffcc);
-      font-weight:500;transition:transform .12s ease, box-shadow .12s ease;cursor:pointer;
+      font-weight:600;transition:transform .12s ease, box-shadow .12s ease;cursor:pointer;
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
     }
-    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.08)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.10)}
 
+    /* Section base */
     section{padding:56px 0;border-top:1px solid var(--stroke)}
     section:first-of-type{border-top:0}
     h2{
       font-family:"Fraunces", serif;
-      font-size:clamp(20px,2.4vw,28px);
-      margin:0 0 18px;
+      font-size:clamp(22px,2.6vw,34px);
+      margin:0 0 10px;
       text-align:center;color:var(--text);
     }
 
-    /* Project grid */
+    /* ===== Projects: 풀폭 스트라이프 + 리빌 ===== */
+    #projects{
+      position:relative;
+      padding:80px 0 100px;
+      border-top:1px solid #e8dfd8;
+      border-bottom:1px solid #e8dfd8;
+      z-index:0;
+    }
+    #projects::before{
+      content:"";
+      position:absolute; top:0; left:50%;
+      transform:translateX(-50%);
+      width:100vw; height:100%;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #e7edf1 0, #e7edf1 40px,     /* 소라 */
+          #fffaf6 40px, #fffaf6 80px   /* 아이보리 */
+        );
+      z-index:-1;
+    }
+    .projects-sub{ text-align:center; color:var(--muted); margin:-2px 0 18px }
+
+    .reveal-btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      margin:0 auto 22px; padding:.8rem 1.3rem;
+      border-radius:999px; border:1.2px solid var(--text);
+      background:linear-gradient(#ffffff, #ffffffcc);
+      font-weight:700; cursor:pointer;
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .reveal-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(0,0,0,.10) }
+    .reveal-btn .chev{ display:inline-block; transition:transform .2s ease }
+
+    .reveal{
+      overflow:hidden; max-height:0; opacity:0; transform:translateY(-4px);
+      transition:max-height .45s ease, opacity .25s ease, transform .25s ease;
+    }
+    .reveal.open{ max-height:2000px; opacity:1; transform:translateY(0) }
+    .reveal.collapsed{ pointer-events:none }
+
+    /* Grid & Cards */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
     .card{
       grid-column:span 4;
@@ -104,7 +149,7 @@
       overflow:hidden;
       transition:transform .18s ease, box-shadow .18s ease,border-color .18s ease;
       backdrop-filter:blur(6px) saturate(120%);
-      box-shadow:0 4px 12px rgba(0,0,0,.05); /* 패턴 위에서 과하지 않게 */
+      box-shadow:0 4px 12px rgba(0,0,0,.05); /* 패턴 위에서 은은하게 */
     }
     .card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08);border-color:#e7ddd5}
     .thumb{aspect-ratio:4/3;background:linear-gradient(180deg,#fafafa,#f5f5f5);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--stroke)}
@@ -112,41 +157,12 @@
     .inner h3{margin:0 0 4px;font-size:18px;font-weight:600}
     .inner p{margin:0;color:var(--muted);font-size:14px}
 
-    /* ===================== Full-bleed Stripe Background for Projects ===================== */
-    #projects{
-      position:relative;
-      padding:80px 0 100px;              /* 섹션 여백 */
-      border-top:1px solid #e8dfd8;
-      border-bottom:1px solid #e8dfd8;
-      z-index:0;
-    }
-    /* 화면 전체 폭으로 스트라이프 확장 */
-    #projects::before{
-      content:"";
-      position:absolute; top:0; left:50%;
-      transform:translateX(-50%);
-      width:100vw; height:100%;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          #e7edf1 0, #e7edf1 40px,       /* 소라색 */
-          #fffaf6 40px, #fffaf6 80px     /* 아이보리 */
-        );
-      z-index:-1;
-    }
-    #projects h2{
-      font-family:"Fraunces", serif;
-      font-size:32px; margin-bottom:40px; color:#2b2b2b;
-    }
-
     /* Footer */
     footer{padding:42px 0;border-top:1px solid var(--stroke);color:var(--muted);text-align:center;font-size:14px}
 
     @media (max-width:700px){
-      .intro{flex-direction:column;gap:12px;text-align:center}
-      .intro-text{text-align:center;align-items:center}
-      .actions{justify-content:center}
       .card{grid-column:span 12}
+      .intro-text h1{font-size:42px}
     }
 
     /* Modal viewer */
@@ -162,6 +178,10 @@
       position:absolute;top:10px;right:12px;border:0;
       background:#f3f4f6;border:1px solid var(--stroke);
       border-radius:10px;padding:.4rem .6rem;font-size:18px;cursor:pointer;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal, .reveal-btn, .card{ transition:none !important }
     }
   </style>
 </head>
@@ -181,7 +201,8 @@
   </header>
 
   <main id="top" class="container">
-    <section class="hero">
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero">
       <div class="intro">
         <div class="intro-text">
           <h1>Joan Lee</h1>
@@ -195,68 +216,77 @@
     </section>
   </main>
 
-  <!-- Projects: 풀폭 스트라이프 배경이 섹션 자체에서 깔림 -->
-  <section id="projects">
+  <!-- Projects (풀폭 스트라이프 + Reveal) -->
+  <section id="projects" aria-label="Projects">
     <div class="container">
       <h2>Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <a href="#" class="proj"
-             data-title="Visual Identity Design"
-             data-desc="A bold visual identity poster for a modern fast-casual burger concept highlighting playful typography and brand storytelling."
-             data-image="assets/funkyfreshburgers.png">
-            <div class="thumb"><img src="assets/funkyfreshburgers.png" alt="Brand poster"></div>
-            <div class="inner"><h3>Brand Poster Design</h3><p>Identity / visual storytelling</p></div>
-          </a>
-        </article>
+      <p class="projects-sub">브랜드 · 에디토리얼 · 비디오 작업을 한 번에 모았어요.</p>
 
-        <article class="card">
-          <a href="#" class="proj"
-             data-title="Principle of Design — Playlist"
-             data-desc="A poster design for a favorite playlist featuring custom album art and layout typography."
-             data-video="assets/PRINCIPLE_OF_DESIGN.pdf"
-             data-image="assets/principle-thumb.jpg">
-            <div class="thumb"><img src="assets/principle-thumb.jpg" alt="Principle of Design"></div>
-            <div class="inner"><h3>Principle of Design</h3><p>Editorial / layout</p></div>
-          </a>
-        </article>
+      <button id="toggleProjects" class="reveal-btn" aria-expanded="false" aria-controls="proj-reveal">
+        <span class="chev">▼</span> View Projects
+      </button>
 
-        <article class="card">
-          <a href="#" class="proj"
-             data-title="Collage"
-             data-desc="A magazine-style collage merging retro coastal vibes with surreal aquatic details."
-             data-image="assets/joancollage.jpeg">
-            <div class="thumb"><img src="assets/joancollage.jpeg" alt="Collage artwork"></div>
-            <div class="inner"><h3>Collage</h3><p>Texture / narrative</p></div>
-          </a>
-        </article>
+      <div id="proj-reveal" class="reveal collapsed">
+        <div class="grid">
+          <article class="card">
+            <a href="#" class="proj"
+               data-title="Visual Identity Design"
+               data-desc="A bold visual identity poster for a modern fast-casual burger concept highlighting playful typography and brand storytelling."
+               data-image="assets/funkyfreshburgers.png">
+              <div class="thumb"><img src="assets/funkyfreshburgers.png" alt="Brand poster"></div>
+              <div class="inner"><h3>Brand Poster Design</h3><p>Identity / visual storytelling</p></div>
+            </a>
+          </article>
 
-        <article class="card">
-          <a href="#" class="proj"
-             data-title="Short Story Video"
-             data-desc="A comedic short film blending humor and editing rhythm for engaging storytelling."
-             data-video="https://www.youtube.com/embed/5XtKpKKUSzY"
-             data-image="assets/storythumb.jpg">
-            <div class="thumb"><img src="assets/storythumb.jpg" alt="Short Story video"></div>
-            <div class="inner"><h3>Short Story Video</h3><p>Narrative / video</p></div>
-          </a>
-        </article>
+          <article class="card">
+            <a href="#" class="proj"
+               data-title="Principle of Design — Playlist"
+               data-desc="A poster design for a favorite playlist featuring custom album art and layout typography."
+               data-video="assets/PRINCIPLE_OF_DESIGN.pdf"
+               data-image="assets/principle-thumb.jpg">
+              <div class="thumb"><img src="assets/principle-thumb.jpg" alt="Principle of Design"></div>
+              <div class="inner"><h3>Principle of Design</h3><p>Editorial / layout</p></div>
+            </a>
+          </article>
 
-        <article class="card">
-          <a href="#" class="proj"
-             data-title="Art Student Interview"
-             data-desc="An interview exploring a Pratt Institute art student's creative process and inspiration."
-             data-video="https://www.youtube.com/embed/JGvUScNk1C8"
-             data-image="assets/artthumb.jpg">
-            <div class="thumb"><img src="assets/artthumb.jpg" alt="Art Student Interview"></div>
-            <div class="inner"><h3>Art Student Interview</h3><p>Interview / video</p></div>
-          </a>
-        </article>
+          <article class="card">
+            <a href="#" class="proj"
+               data-title="Collage"
+               data-desc="A magazine-style collage merging retro coastal vibes with surreal aquatic details."
+               data-image="assets/joancollage.jpeg">
+              <div class="thumb"><img src="assets/joancollage.jpeg" alt="Collage artwork"></div>
+              <div class="inner"><h3>Collage</h3><p>Texture / narrative</p></div>
+            </a>
+          </article>
+
+          <article class="card">
+            <a href="#" class="proj"
+               data-title="Short Story Video"
+               data-desc="A comedic short film blending humor and editing rhythm for engaging storytelling."
+               data-video="https://www.youtube.com/embed/5XtKpKKUSzY"
+               data-image="assets/storythumb.jpg">
+              <div class="thumb"><img src="assets/storythumb.jpg" alt="Short Story video"></div>
+              <div class="inner"><h3>Short Story Video</h3><p>Narrative / video</p></div>
+            </a>
+          </article>
+
+          <article class="card">
+            <a href="#" class="proj"
+               data-title="Art Student Interview"
+               data-desc="An interview exploring a Pratt Institute art student's creative process and inspiration."
+               data-video="https://www.youtube.com/embed/JGvUScNk1C8"
+               data-image="assets/artthumb.jpg">
+              <div class="thumb"><img src="assets/artthumb.jpg" alt="Art Student Interview"></div>
+              <div class="inner"><h3>Art Student Interview</h3><p>Interview / video</p></div>
+            </a>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
+  <!-- Contact -->
+  <section id="contact" aria-label="Contact">
     <div class="container">
       <h2>Contact</h2>
       <p style="text-align:center">
@@ -283,6 +313,8 @@
 
   <script>
     document.getElementById('y').textContent=new Date().getFullYear();
+
+    // Modal viewer (기존)
     const viewer=document.getElementById('viewer');
     const vTitle=document.getElementById('viewer-title');
     const vMedia=document.getElementById('viewer-media');
@@ -323,8 +355,29 @@
         openViewer({title:a.dataset.title,desc:a.dataset.desc,image:a.dataset.image,video:a.dataset.video});
       });
     });
+
+    // Projects Reveal (새로 추가)
+    const toggleBtn = document.getElementById('toggleProjects');
+    const revealBox = document.getElementById('proj-reveal');
+    const chev = toggleBtn?.querySelector('.chev');
+
+    function setOpenState(open){
+      revealBox.classList.toggle('open', open);
+      revealBox.classList.toggle('collapsed', !open);
+      toggleBtn.setAttribute('aria-expanded', String(open));
+      if(chev){ chev.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)'; }
+      // 텍스트 토글
+      const base = open ? ' Hide Projects' : ' View Projects';
+      // 첫 노드가 텍스트가 아닐 수 있으니 안전하게 교체
+      toggleBtn.childNodes.forEach((n,i)=>{
+        if(i>0 && n.nodeType===3){ n.nodeValue = base; }
+      });
+    }
+    toggleBtn?.addEventListener('click', ()=> setOpenState(!revealBox.classList.contains('open')));
+    setOpenState(false); // 초기엔 닫힘
   </script>
 </body>
 </html>
+
 
 
